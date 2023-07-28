@@ -1,0 +1,13 @@
+<%- include('../partials/header') %>
+
+<form id="new-form" action="/dashboard" method="POST">
+  <label>Date:</label>
+  <input type="date" name="date">
+  <label>Calories consumed:</label>
+  <input type="number" name="caloriesIn">
+  <label>Calories burned:</label>
+  <input type="number" name="caloriesOut">
+  <input type="submit" value="Add">
+</form>
+
+<%- include('../partials/footer') %>
