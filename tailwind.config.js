@@ -1,8 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./public/stylesheets/style.css", "./views/*/*ejs", "./views/*ejs"],
+  content: ["./public/stylesheets/input.css", "./views/*/*ejs", "./views/*ejs"],
   theme: {
     extend: {},
+    fontFamily: {
+      'sans': ['Nunito'],
+      'serif': ['Inter']
+    }
   },
   plugins: [],
 }

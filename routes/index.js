@@ -27,11 +27,29 @@ router.get('/logout', function(req, res){
   });
 });
 
-router.get('/auth/fitbit', passport.authenticate(
-  'google',
-  {
-    scope: ['profile', 'email'],
-  }
+router.get('/auth/fitbit',
+  passport.authenticate('fitbit', { scope: ['activity','heartrate','location', 'nutrition', 'profile', 'sleep', 'weight'] }
 ));
+
+router.get('/auth/fitbit/callback', passport.authenticate( 
+  'fitbit', 
+  { 
+    successRedirect: '/',
+    failureRedirect: '/'
+}
+));
+
+// router.get('/dashboard', (req, res) => {
+//   const accessToken = req.session.accessToken;
+//   const refreshToken = req.session.refreshToken;
+
+//   res.render('/health/show', { accessToken, refreshToken });
+// });
+
+router.get('/fitbit/profile', async (req, res) => {
+  const accessToken = req.session.accessToken;
+
+  res.json(profileData);
+});
 
 module.exports = router;
