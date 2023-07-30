@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="bg-fixed bg-gradient-to-b from-gray-800 to-gray-700 text-white h-screen w-screen">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,28 +13,35 @@
   <link rel='stylesheet' href='/stylesheets/output.css' />
   <title>Trackr</title>
 </head>
-<body class="bg-gradient-to-b from-gray-800 to-gray-700 h-screen text-white">
-
-    <nav class="bg-gray-800 mx-auto px-4">
+<body class="text-white">
+    <nav class="bg-gray-800 mx-auto px-4 w-2/3">
         <div class="relative flex h-16 items-center justify-between">
             <div class="flex flex-1 items-stretch justify-start">
                 <div class="flex">
-                    <img class="h-8 w-auto px-4" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500">
+                    <a href="/"><img class="h-8 w-auto px-4" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"></a>
                 </div>
                 <div class="flex space-x-4">
                     <% if (user) { %>
                         <a href="/dashboard" class="nav-link">Dashboard</a>
                         <a href="/health/new" class="nav-link">Daily Log</a>
-                        <a href="/auth/fitbit" class="nav-link">Connect to Fitbit</a>
                     <% } %>
+                    
                 </div>
             </div>
 
-            <div class="absolute inset-y-0 right-0 flex items-center pr-2">
+            <div class="absolute inset-y-0 right-0 flex items-center pr-2 space-x-4">
+                
                 <% if (user) { %>
+                    <% if (user.fitbitId) { %>
+                        <p class="fitbit-link">Connected</p>
+                    <% } else { %>
+                        <a href="/auth/fitbit" class="fitbit-link">Connect to Fitbit</a>
+                    <% } %>
                     <a href="/" class="nav-link">Log Out</a>
                 <% } else { %>
-                    <a href="/auth/google" class="nav-link">Log In</a>
+                  <div class="flex">
+                    <a href="/auth/google" class="nav-link flex items-center">Login &nbsp;<img class="h-6 w-auto" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"></a>
+                  </div>
                 <% } %>
                 
             </div>

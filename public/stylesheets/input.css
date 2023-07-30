@@ -4,6 +4,9 @@
 
 @layer components {
     .nav-link {
-      @apply text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium;
+      @apply text-gray-300 hover:bg-gray-700 rounded-full px-3 py-2 text-sm font-medium;
+    }
+    .fitbit-link {
+      @apply relative flex h-11 items-center justify-center px-4 rounded-full bg-blue-600 text-sm hover:scale-105;
     }
 }

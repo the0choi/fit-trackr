@@ -31,7 +31,7 @@ router.get('/auth/fitbit',
   passport.authenticate('fitbit', { scope: ['activity','heartrate','location', 'nutrition', 'profile', 'sleep', 'weight'] }
 ));
 
-router.get('/auth/fitbit/callback', passport.authenticate( 
+router.get('/fitbitoauth2callback', passport.authenticate( 
   'fitbit', 
   { 
     successRedirect: '/',
@@ -39,17 +39,10 @@ router.get('/auth/fitbit/callback', passport.authenticate(
 }
 ));
 
-// router.get('/dashboard', (req, res) => {
+// router.get('/fitbit/profile', async (req, res) => {
 //   const accessToken = req.session.accessToken;
-//   const refreshToken = req.session.refreshToken;
 
-//   res.render('/health/show', { accessToken, refreshToken });
+//   res.json(profileData);
 // });
-
-router.get('/fitbit/profile', async (req, res) => {
-  const accessToken = req.session.accessToken;
-
-  res.json(profileData);
-});
 
 module.exports = router;

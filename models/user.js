@@ -8,8 +8,10 @@ const userSchema = new Schema({
       required: true
     },
     email: String,
-    avatar: String
+    avatar: String,
+    fitbitId: String
   }, {
     timestamps: true
   });
+
 module.exports = mongoose.model('User', userSchema);

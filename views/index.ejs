@@ -3,16 +3,50 @@
 
 <div class="max-w-7xl mx-auto px-6 relative pt-36">
   <div class="w-2/3 text-center mx-auto">
-    <h1 class="text-white font-bold text-5xl font-serif">Elevate your health <br>today.</h1>
-    <p class="mt-8 text-gray-300">Trackr is an all-in-one solution for maintaining your wellbeing and a healthy lifestyle. Track your daily health metrics by seamlessly syncing all your fitness data into one unified ecosystem. Stay on track, set new milestones, and experience a new level of convenience with Trackr.</p>
-    <div class="mt-14 flex flex-wrap justify-center">
-      <a href="/auth/google" class="relative flex h-11 items-center justify-center px-6 rounded-full bg-blue-600">
-        <span class="relative text-base font-semibold text-white">Log In</span>
-      </a>
+    <% if (user) { %>
+      <h1 class="font-bold text-6xl font-serif">You're logged in.</h1>
+    <% } else { %>
+      <h1 class="font-bold text-6xl font-serif">Elevate your health <br>today.</h1>
+    <% } %>
+    <p class="mt-8 text-gray-300">An all-in-one solution for maintaining your wellbeing and a healthy lifestyle. Track your daily health metrics by seamlessly syncing your fitness data into one unified ecosystem. Stay on track, set new milestones, and improve your quality of life with Trackr.</p>
+    <div class="mt-14 flex flex-row justify-center space-x-2">
+      <% if (user) { %>
+        <% if (user.fitbitId) { %>
+          <p class="fitbit-link">Connected</p>
+        <% } else { %>
+          <a href="/auth/fitbit" class="fitbit-link">Connect to Fitbit</a>
+        <% } %>
+      <% } else { %>
+        <a href="/auth/google" class="relative flex h-11 items-center justify-center px-6 rounded-full bg-blue-600 hover:scale-105">
+          <span class="relative text-base font-semibold">Login</span>
+        </a>
+        <a href="/auth/google" class="relative flex h-11 items-center justify-center px-6 rounded-full bg-gray-600 hover:scale-105">
+          <span class="relative text-base font-semibold">Sign Up</span>
+        </a>
+      <% } %>
     </div>
-    <div class="hidden py-8 mt-16 border-y border-gray-800 flex justify-between">
-      
+    <% if (user) { %>
+      <% if (user.fitbitId) { %>
+          <p class="mt-6"><br>Check out your dashboard to get started!</p>
+
+    <% } }%>
+    <div class="py-6 mt-16 border-y border-gray-400 text-sm flex justify-around">
+      <div>
+        <h6 class="text-lg font-semibold">Effortless Tracking</h6>
+        <p class="mt-2 text-gray-400">Log your daily metrics</p>
+      </div>
+      <div>
+        <h6 class="text-lg font-semibold">Health Insights</h6>
+        <p class="mt-2 text-gray-400">Monitor your progress <br>over time</p>
+      </div>
+      <div>
+        <h6 class="text-lg font-semibold">Seamless Data Sync</h6>
+        <p class="mt-2 text-gray-400">Easily sync your Fitbit data</p>
+      </div>
     </div>
+
+    <p class="text-xs mt-28 mb-5">Made by 
+      <a class="underline" href="https://github.com/the0choi">@the0choi</a></p>
   </div>
 
 </div>

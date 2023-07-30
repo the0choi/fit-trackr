@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+
 const healthCtrl = require('../controllers/health');
 const ensureLoggedIn = require('../config/ensureLoggedIn');
 
