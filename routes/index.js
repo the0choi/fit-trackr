@@ -23,6 +23,7 @@ router.get('/oauth2callback', passport.authenticate(
 
 router.get('/logout', function(req, res){
   req.logout(function() {
+    console.log('logged out')
     res.redirect('/');
   });
 });

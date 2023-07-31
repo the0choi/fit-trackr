@@ -48,8 +48,10 @@ passport.use(
       try {
         let user = await User.findOne({ googleId: req.user.googleId });
         if (user.fitbitId !== undefined) return cb(null, user);
-
         user.fitbitId = profile.id;
+        user.accessToken = accessToken;
+        console.log(user.fitbitId);
+        // user.refreshToken = refreshToken;
         await user.save();
         return cb(null, user);
       } catch (err) {
@@ -58,19 +60,3 @@ passport.use(
     }
   )
 );
-
-// passport.use(
-//   new FitbitStrategy(
-//     {
-//       clientID: process.env.FITBIT_CLIENT_ID,
-//       clientSecret: process.env.FITBIT_CLIENT_SECRET,
-//       callbackURL: process.env.FITBIT_CALLBACK,
-//       passReqToCallback: true,
-//     },
-//     async function (accessToken, refreshToken, profile, done) {
-//       let user = await User.findOne({ fitbitId: profile.id });
-//       if (user) return done(null, user);
-//       return done(null, user);
-//     }
-//   )
-// );

@@ -1,13 +1,34 @@
 <%- include('../partials/header') %>
 
-<form id="new-form" action="/dashboard" method="POST">
-  <label>Date:</label>
-  <input type="date" name="date">
-  <label>Calories consumed:</label>
-  <input type="number" name="caloriesIn">
-  <label>Calories burned:</label>
-  <input type="number" name="caloriesOut">
-  <input type="submit" value="Add">
-</form>
+<div class="flex flex-col justify-center items-center mt-10">
+  <h1 class="font-bold">Import data from Fitbit...</h1><br>
+  <form id="fb-form" action="/dashboard" method="POST">
+    <input type="hidden" name="source" value="fitbit">
+    <label>Date:</label>
+    <input type="date" name="date" class="block bg-gray-600 mt-2">
+    <button class="fitbit-link mt-3">
+      <input type="submit" value="Add">
+    </button>
+  </form>
+</div>
+
+<div class="mt-5 border-t border-gray-400 w-2/3 mx-auto"></div>
+
+
+<div class="flex flex-col justify-center items-center mt-10">
+  <h1 class="font-bold">Or manually log your day's metrics</h1><br>
+  <form id="manual-form" action="/dashboard" method="POST">
+    <input type="hidden" name="source" value="manual">
+    <label>Date:</label>
+    <input type="date" name="date" class="block bg-gray-600 mt-2">
+    <label>Calories consumed:</label>
+    <input type="number" name="caloriesIn" class="block bg-gray-600 mt-2">
+    <label>Calories burned:</label>
+    <input type="number" name="caloriesOut" class="block bg-gray-600 mt-2">
+    <button class="fitbit-link mt-3">
+      <input type="submit" value="Add">
+    </button>
+  </form>
+</div>
 
 <%- include('../partials/footer') %>
