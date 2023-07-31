@@ -32,7 +32,7 @@
             <div class="absolute inset-y-0 right-0 flex items-center pr-2 space-x-4">
                 
                 <% if (user) { %>
-                    <% if (!user.fitbitId) { %>
+                    <% if (user.accessToken) { %>
                         <p class="fitbit-link">Connected</p>
                     <% } else { %>
                         <a href="/auth/fitbit" class="fitbit-link">Connect to Fitbit</a>

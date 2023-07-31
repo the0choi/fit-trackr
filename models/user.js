@@ -10,7 +10,8 @@ const userSchema = new Schema({
     email: String,
     avatar: String,
     fitbitId: String,
-    accessToken: String
+    accessToken: String,
+    refreshToken: String
   }, {
     timestamps: true
   });

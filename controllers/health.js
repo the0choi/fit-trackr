@@ -8,7 +8,8 @@ module.exports = {
 };
 
 async function index(req, res) {
-  const health = await Health.find({});
+  console.log(req.body.user)
+  const health = await Health.find({ });
   res.render("health/index", { health });
 }
 
@@ -26,18 +27,14 @@ async function create(req, res) {
     const source = req.body.source;
 
     if (source === "fitbit") {
-      console.log(req.user)
-      // Check if the user is authenticated and has a valid access token
-      if (!req.isAuthenticated() || !req.user.fitbitAccessToken) {
+      if (!req.isAuthenticated() || !req.user.accessToken) {
         return res
           .status(401)
           .json({ error: "User not authenticated or access token missing" });
       }
 
-      const accessToken = req.user.fitbitAccessToken;
+      const accessToken = req.user.accessToken;
       const fitbitDate = req.body.date;
-      console.log(fitbitDate)
-
       const response = await fetch(
         `https://api.fitbit.com/1/user/-/activities/date/${fitbitDate}.json`,
         {
@@ -51,8 +48,9 @@ async function create(req, res) {
         throw new Error("Error fetching activities data from Fitbit API");
       }
 
+      const health = await Health.find({ user: req.user._id });
       const activitiesData = await response.json();
-      res.json(activitiesData);
+      res.render("health/index", { health, activitiesData });
 
     } else if (source === "manual") {
       const health = await Health.create(req.body);

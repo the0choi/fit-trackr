@@ -47,11 +47,9 @@ passport.use(
     async function (req, accessToken, refreshToken, profile, cb) {
       try {
         let user = await User.findOne({ googleId: req.user.googleId });
-        if (user.fitbitId !== undefined) return cb(null, user);
-        user.fitbitId = profile.id;
         user.accessToken = accessToken;
-        console.log(user.fitbitId);
-        // user.refreshToken = refreshToken;
+        user.refreshToken = refreshToken;
+        user.fitbitId = profile.id;
         await user.save();
         return cb(null, user);
       } catch (err) {

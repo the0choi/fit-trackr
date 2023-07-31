@@ -11,7 +11,7 @@
     <p class="mt-8 text-gray-300">An all-in-one solution for maintaining your wellbeing and a healthy lifestyle. Track your daily health metrics by seamlessly syncing your fitness data into one unified ecosystem. Stay on track, set new milestones, and improve your quality of life with Trackr.</p>
     <div class="mt-14 flex flex-row justify-center space-x-2">
       <% if (user) { %>
-        <% if (!user.fitbitId) { %>
+        <% if (user.accessToken) { %>
           <p class="fitbit-link">Connected</p>
         <% } else { %>
           <a href="/auth/fitbit" class="fitbit-link">Connect to Fitbit</a>
@@ -25,11 +25,9 @@
         </a>
       <% } %>
     </div>
-    <% if (user) { %>
-      <% if (user.fitbitId) { %>
+    <% if (user && user.accessToken) { %>
           <p class="mt-6"><br>Check out your dashboard to get started!</p>
-
-    <% } }%>
+    <% } %>
     <div class="py-6 mt-16 border-y border-gray-400 text-sm flex justify-around">
       <div>
         <h6 class="text-lg font-semibold">Effortless Tracking</h6>
