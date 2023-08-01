@@ -1,0 +1,27 @@
+<%- include('../partials/header') %>
+
+<div class="flex flex-col justify-center items-center mt-10">
+  <h1 class="font-bold">Edit</h1><br>
+  <form action="/health/<%= healthOne._id %>" method="POST">
+    <input type="hidden" name="user" value= <%= user._id %>>
+    <label>Date:</label>
+    <input type="date" name="date" value="<%= healthOne.date %>" class="input-box">
+    <label>Calories consumed:</label>
+    <input type="number" name="caloriesIn"  value="<%= healthOne.caloriesIn %>" class="input-box">
+    <label>Calories burned:</label>
+    <input type="number" name="caloriesOut" value="<%= healthOne.caloriesOut %>" class="input-box">
+    <label>Resting heart rate:</label>
+    <input type="number" name="restingHeartRate" value="<%= healthOne.restingHeartRate %>" class="input-box">
+    <label>Daily steps:</label>
+    <input type="number" name="steps" value="<%= healthOne.steps %>" class="input-box">
+    <label>Weight:</label>
+    <input type="number" name="weight" value="<%= healthOne.weight %>" class="input-box">
+    <label>Hours of sleep:</label>
+    <input type="number" name="sleep" value="<%= healthOne.sleep %>" class="input-box">
+    <button class="fitbit-link mt-3">
+      <input type="submit" value="Add">
+    </button>
+  </form>
+</div>
+
+<%- include('../partials/footer') %>

@@ -1,13 +1,16 @@
 <%- include('../partials/header') %>
 
 <div class="flex flex-col justify-center items-center mt-10">
-  <h1 class="font-bold">Import data from Fitbit...</h1><br>
-  <form id="fb-form" action="/dashboard" method="POST">
+  <h1 class="font-bold">Sync your data from Fitbit</h1><br>
+  <form action="/dashboard" method="POST">
     <input type="hidden" name="source" value="fitbit">
+    <input type="hidden" name="user" value= <%= user._id %>>
     <label>Date:</label>
-    <input type="date" name="date" class="block bg-gray-600 mt-2">
+    <input type="date" name="date" class="input-box">
+    <label>Calories consumed:</label>
+    <input type="number" name="caloriesIn" class="input-box">
     <button class="fitbit-link mt-3">
-      <input type="submit" value="Add">
+      <input type="submit" value="Import">
     </button>
   </form>
 </div>
@@ -17,14 +20,23 @@
 
 <div class="flex flex-col justify-center items-center mt-10">
   <h1 class="font-bold">Or manually log your day's metrics</h1><br>
-  <form id="manual-form" action="/dashboard" method="POST">
+  <form action="/dashboard" method="POST">
     <input type="hidden" name="source" value="manual">
+    <input type="hidden" name="user" value= <%= user._id %>>
     <label>Date:</label>
-    <input type="date" name="date" class="block bg-gray-600 mt-2">
+    <input type="date" name="date" class="input-box">
     <label>Calories consumed:</label>
-    <input type="number" name="caloriesIn" class="block bg-gray-600 mt-2">
+    <input type="number" name="caloriesIn" class="input-box">
     <label>Calories burned:</label>
-    <input type="number" name="caloriesOut" class="block bg-gray-600 mt-2">
+    <input type="number" name="caloriesOut" class="input-box">
+    <label>Resting heart rate:</label>
+    <input type="number" name="restingHeartRate" class="input-box">
+    <label>Daily steps:</label>
+    <input type="number" name="steps" class="input-box">
+    <label>Weight:</label>
+    <input type="number" name="weight" class="input-box">
+    <label>Hours of sleep:</label>
+    <input type="number" name="sleep" class="input-box">
     <button class="fitbit-link mt-3">
       <input type="submit" value="Add">
     </button>

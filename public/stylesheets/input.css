@@ -9,4 +9,7 @@
     .fitbit-link {
       @apply relative flex h-11 items-center justify-center px-4 rounded-full bg-blue-600 text-sm hover:scale-105;
     }
+    .input-box {
+      @apply block bg-gray-600 mt-2;
+    }
 }

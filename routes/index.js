@@ -28,7 +28,7 @@ router.get('/logout', function(req, res){
 });
 
 router.get('/auth/fitbit',
-  passport.authenticate('fitbit', { scope: ['activity','heartrate','location', 'nutrition', 'profile', 'sleep', 'weight'] }
+  passport.authenticate('fitbit', { scope: ['activity','heartrate', 'nutrition', 'profile', 'sleep', 'weight'] }
 ));
 
 router.get('/fitbitoauth2callback', passport.authenticate( 
@@ -38,11 +38,5 @@ router.get('/fitbitoauth2callback', passport.authenticate(
     failureRedirect: '/'
 }
 ));
-
-// router.get('/fitbit/profile', async (req, res) => {
-//   const accessToken = req.session.accessToken;
-
-//   res.json(profileData);
-// });
 
 module.exports = router;
