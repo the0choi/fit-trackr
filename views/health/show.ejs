@@ -16,7 +16,8 @@
       </thead>
       <tbody>
           <tr>
-            <td><%= healthOne.date %></td>
+            <% let [y, m, d] = healthOne.date.toISOString().substring(0, 10).split('-') %>
+            <td><%= `${d}/${m}/${y}` %></td>
             <td><%= healthOne.caloriesIn %></td>
             <td><%= healthOne.caloriesOut %></td>
             <td><%= healthOne.restingHeartRate %></td>
@@ -29,14 +30,14 @@
 
   <br>
   <form action="/health/<%= healthOne._id %>/edit" method="GET">
-    <button class="fitbit-link mt-3">
+    <button class="action-button mt-3">
       <input type="submit" value="Edit">
     </button>
   </form>
 
   <br>
   <form action="/health/<%= healthOne._id %>?_method=DELETE" method="POST">
-    <button class="fitbit-link mt-3">
+    <button class="action-button mt-3">
       <input type="submit" value="Delete">
     </button>
   </form>

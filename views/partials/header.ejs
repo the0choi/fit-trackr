@@ -11,16 +11,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter&family=Nunito&family=Open+Sans:wght@400;800&display=swap" rel="stylesheet">  
   <link rel='stylesheet' href='/stylesheets/output.css' />
+  <script src='https://cdn.plot.ly/plotly-2.24.1.min.js'></script>
   <title>Trackr</title>
 </head>
 <body class="text-white">
     <nav class="bg-gray-800 mx-auto px-4 w-2/3">
         <div class="relative flex h-16 items-center justify-between">
             <div class="flex flex-1 items-stretch justify-start">
-                <div class="flex">
-                    <a href="/"><img class="h-8 w-auto px-4" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"></a>
+                <div class="flex items-center">
+                  <a href="/"><img class="h-8 w-auto px-4" src="https://tailwindui.com/img/logos/mark.svg?color=blue&shade=500"></a>
+                  <a href="/"><p class="font-bold text-2xl font-serif">Trackr</p></a>
                 </div>
-                <div class="flex space-x-4">
+                <div class="flex space-x-4 px-4">
                     <% if (user) { %>
                         <a href="/dashboard" class="nav-link">Dashboard</a>
                         <a href="/health/new" class="nav-link">Daily Log</a>

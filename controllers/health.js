@@ -12,17 +12,20 @@ module.exports = {
 };
 
 async function update(req, res) {
-  await Health.update(req.params.id, req.body);
-  res.redirect(`/health/${req.params.id}`);
+  try {
+    await Health.findOneAndUpdate(
+      { _id: req.params.id }, 
+      req.body
+    );
+    res.redirect(`/health/${req.params.id}`);
+  } catch (err) {
+    console.error(err);
+    res.redirect('/dashboard');
+  }
 }
 
 async function edit(req, res) {
   let healthOne = await Health.findById(req.params.id);
-
-  // Convert date string into YYYY-MM-DD
-  const [day, month, year] = healthOne.date.split('/');
-  healthOne.date = `${year}-${month}-${day}`;
-
   res.render('health/edit', {
     healthOne
   })
@@ -43,17 +46,17 @@ async function deleteHealth(req, res) {
 
 async function index(req, res) {
   let health = await Health.find({ user: req.user._id });
-
   res.render("health/index", { health });
 }
 
 async function show(req, res) {
   const healthOne = await Health.findById(req.params.id);
+
   res.render("health/show", { healthOne });
 }
 
 function newHealth(req, res) {
-  res.render("health/new", { errorMsg: "" });
+  res.render("health/new");
 }
 
 async function create(req, res) {
@@ -62,7 +65,13 @@ async function create(req, res) {
 
     if (source === "fitbit") {
       if (!req.isAuthenticated() || !req.user.accessToken) {
-        return res.status(401).send("User not authenticated or access token missing");
+        let user = await User.findOne({ _id: req.user._id });
+        let tokens = tokenRefresh(req.user.refreshToken);
+        user.accessToken = tokens.accessToken;
+        user.refreshToken = tokens.refreshToken;
+        await user.save();
+        accessToken = user.accessToken;
+        return res.status(401).send("User not authenticated or access token missing. Please try again.");
       }
 
       let accessToken = req.user.accessToken;
@@ -123,16 +132,20 @@ async function create(req, res) {
       health.steps = activitiesData.summary.steps;
       health.sleep = (sleepData.summary.totalMinutesAsleep / 60).toFixed(2);
       health.weight = weightData.weight.weight;
-      health.date = formatDate(health.date)
+      health.caloriesIn = 0
       await health.save();
 
       console.log("New health record created:", health);
       res.redirect(`/dashboard`);
 
     } else if (source === "manual") {
+      
+      let properties = req.body;
+      for (const key in properties) {
+        if (!properties[key]) properties[key] = 0;
+      }
+      
       const health = await Health.create(req.body);
-      health.date = formatDate(health.date)
-      await health.save();
 
       console.log("New health record created:", health);
       res.redirect(`/dashboard`);
@@ -181,9 +194,4 @@ async function tokenRefresh(refreshToken) {
   } catch (error) {
     throw error;
   }
-}
-
-function formatDate(dateStr) {
-  const [year, month, day] = dateStr.split("-");
-  return `${day}/${month}/${year}`;
 }

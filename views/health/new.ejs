@@ -1,25 +1,23 @@
 <%- include('../partials/header') %>
 
-<div class="flex flex-col justify-center items-center mt-10">
-  <h1 class="font-bold">Sync your data from Fitbit</h1><br>
-  <form action="/dashboard" method="POST">
-    <input type="hidden" name="source" value="fitbit">
-    <input type="hidden" name="user" value= <%= user._id %>>
-    <label>Date:</label>
-    <input type="date" name="date" class="input-box">
-    <label>Calories consumed:</label>
-    <input type="number" name="caloriesIn" class="input-box">
-    <button class="fitbit-link mt-3">
-      <input type="submit" value="Import">
-    </button>
-  </form>
-</div>
-
-<div class="mt-5 border-t border-gray-400 w-2/3 mx-auto"></div>
-
+<% if (user && user.accessToken) { %>
+  <div class="flex flex-col justify-center items-center mt-10">
+    <h1 class="font-bold">Sync your data from Fitbit</h1><br>
+    <form action="/dashboard" method="POST">
+      <input type="hidden" name="source" value="fitbit">
+      <input type="hidden" name="user" value= <%= user._id %>>
+      <label>Date:</label>
+      <input type="date" name="date" class="input-box">
+      <button class="action-button mt-3">
+        <input type="submit" value="Import">
+      </button>
+    </form>
+  </div>
+  <div class="mt-5 border-t border-gray-400 w-2/3 mx-auto"></div>
+<% } %>
 
 <div class="flex flex-col justify-center items-center mt-10">
-  <h1 class="font-bold">Or manually log your day's metrics</h1><br>
+  <h1 class="font-bold">Manually log your day</h1><br>
   <form action="/dashboard" method="POST">
     <input type="hidden" name="source" value="manual">
     <input type="hidden" name="user" value= <%= user._id %>>
@@ -37,7 +35,7 @@
     <input type="number" name="weight" class="input-box">
     <label>Hours of sleep:</label>
     <input type="number" name="sleep" class="input-box">
-    <button class="fitbit-link mt-3">
+    <button class="action-button mt-3">
       <input type="submit" value="Add">
     </button>
   </form>

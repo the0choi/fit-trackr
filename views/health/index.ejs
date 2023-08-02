@@ -1,37 +1,230 @@
 <%- include('../partials/header') %>
 
-<h3 class="text-3xl font-bold underline">Dashboard</h3><br>
+<div class="max-w-7xl mx-auto relative pt-6 px-6">
+  <div class="w-2/3 px-6">
+    <h2 class="my-3 text-3xl font-serif font-semibold">Dashboard</h2>
+    <p class="text-gray-400">The dashboard provides you with a comprehensive overview of your daily progress. Monitor your key health metrics here and view each daily log separately.<br><br> Graph data will display once a minimum of 7 daily logs have been completed.</p><br>
+  </div>
 
-<!-- <h5 class="text-3xl font-bold"><%= health.user %></h5> -->
+  <div class="md:columns-2 lg:columns-3 gap-4 space-y-4">
+    <div class="boxes">
+      <div class="flex gap-4 px-2">
+        <img src="/images/caloriesIn.svg" class="rounded-full w-8 h-auto">
+        <div>
+          <h6 class="text-lg font-medium">Calories Consumed</h6>
+          <p class="text-sm text-gray-300">Last 7 days</p>
+        </div>
+      </div>   
 
+      <div id="caloriesIn-graph" class="h-40 my-2"></div>
+      <script>
+        const health = <%- JSON.stringify(health) %>
+        health.sort( (a,b) => new Date(b.date) - new Date (a.date) );
+        health.slice(7);
+        const trace1 = {x: [], y: [], type: 'scatter', line: {color: 'rgb(26, 51, 89)', width: 3}};
 
-<table id="list">
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Calories Consumed</th>
-        <th>Calories Burned</th>
-        <th>Resting Heart Rate</th>
-        <th>Daily Steps</th>
-        <th>Weight (kg)</th>
-        <th>Sleep (hrs)</th>
-        <th>Details</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% health.forEach(function(h) { %>
-        <tr>
-          <td><%= h.date %></td>
-          <td><%= h.caloriesIn %></td>
-          <td><%= h.caloriesOut %></td>
-          <td><%= h.restingHeartRate %></td>
-          <td><%= h.steps %></td>
-          <td><%= h.weight %></td>
-          <td><%= h.sleep %></td>
-          <td><a href="/health/<%= h._id %>">View</a></td>
-        </tr>
-        <% }); %>
-      </tbody>
-</table>
+        for (let i = 6; i >= 0; i--) {
+          let [y, m, d] = new Date(health[i].date).toISOString().substring(0, 10).split('-')
+          trace1.x.push(`${d}/${m}`)
+          trace1.y.push(health[i].caloriesIn)
+        };
+
+        const data1 = [trace1];
+
+        const layout1 = {
+          margin: {
+            l: 10, 
+            r: 10, 
+            t: 10,
+            b: 20 
+          },
+          yaxis: {
+            automargin: true,
+          }
+        };
+
+        Plotly.newPlot('caloriesIn-graph', data1, layout1, {staticPlot: true});
+      </script>
+        
+    </div>
+    <div class="boxes">
+      <div class="flex gap-4 px-2">
+        <img src="/images/steps.svg" class="rounded-full w-8 h-auto">
+        <div>
+          <h6 class="text-lg font-medium">Daily Steps</h6>
+          <p class="text-sm text-gray-300">Last 7 days</p>
+        </div>
+      </div>
+      <div id="steps-graph" class="h-40 my-2"></div>
+      <script>
+        const trace2 = {x: [], y: [], type: 'scatter', line: {color: 'rgb(26, 51, 89)', width: 3}};
+
+        for (let i = 6; i >= 0; i--) {
+          let [y, m, d] = new Date(health[i].date).toISOString().substring(0, 10).split('-')
+          trace2.x.push(`${d}/${m}`)
+          trace2.y.push(health[i].steps)
+        };
+
+        const data2 = [trace2];
+        Plotly.newPlot('steps-graph', data2, layout1, {staticPlot: true});
+      </script>
+    </div>
+    <div class="boxes">
+      <div class="flex gap-4 px-2">
+        <img src="/images/caloriesOut.svg" class="rounded-full w-8 h-auto">
+        <div>
+          <h6 class="text-lg font-medium">Calories Burned</h6>
+          <p class="text-sm text-gray-300">Last 7 days</p>
+        </div>
+      </div>
+      <div id="caloriesOut-graph" class="h-40 my-2"></div>
+      <script>
+        const trace3 = {x: [], y: [], type: 'scatter', line: {color: 'rgb(26, 51, 89)', width: 3}};
+
+        for (let i = 6; i >= 0; i--) {
+          let [y, m, d] = new Date(health[i].date).toISOString().substring(0, 10).split('-')
+          trace3.x.push(`${d}/${m}`)
+          trace3.y.push(health[i].caloriesOut)
+        };
+
+        const data3 = [trace3];
+        Plotly.newPlot('caloriesOut-graph', data3, layout1, {staticPlot: true});
+      </script>
+    </div>
+    <div class="boxes">
+      <div class="flex gap-4 px-2">
+        <img src="/images/weight.svg" class="rounded-full w-8 h-auto">
+        <div>
+          <h6 class="text-lg font-medium">Weight</h6>
+          <p class="text-sm text-gray-300">Last 7 days</p>
+        </div>
+      </div>
+      <div id="weight-graph" class="h-40 my-2"></div>
+      <script>
+        const trace4 = {x: [], y: [], type: 'scatter', line: {color: 'rgb(26, 51, 89)', width: 3}};
+
+        for (let i = 6; i >= 0; i--) {
+          let [y, m, d] = new Date(health[i].date).toISOString().substring(0, 10).split('-')
+          trace4.x.push(`${d}/${m}`)
+          trace4.y.push(health[i].weight)
+        };
+
+        const data4 = [trace4];
+        Plotly.newPlot('weight-graph', data4, layout1, {staticPlot: true});
+      </script>
+    </div>
+    <div class="boxes">
+      <div class="flex gap-4 px-2">
+        <img src="/images/restingHeartRate.svg" class="rounded-full w-8 h-auto">
+        <div>
+          <h6 class="text-lg font-medium">Resting Heart Rate</h6>
+          <p class="text-sm text-gray-300">Last 7 days</p>
+        </div>
+      </div>
+      <div id="restingHeartRate-graph" class="h-40 my-2"></div>
+      <script>
+        const trace5 = {x: [], y: [], type: 'scatter', line: {color: 'rgb(26, 51, 89)', width: 3}};
+
+        for (let i = 6; i >= 0; i--) {
+          let [y, m, d] = new Date(health[i].date).toISOString().substring(0, 10).split('-')
+          trace5.x.push(`${d}/${m}`)
+          trace5.y.push(health[i].restingHeartRate)
+        };
+
+        const data5 = [trace5];
+        Plotly.newPlot('restingHeartRate-graph', data5, layout1, {staticPlot: true});
+      </script>
+    </div>
+    <div class="boxes">
+      <div class="flex gap-4 px-2">
+        <img src="/images/sleep.svg" class="rounded-full w-8 h-auto">
+        <div>
+          <h6 class="text-lg font-medium">Sleep</h6>
+          <p class="text-sm text-gray-300">Last 7 days</p>
+        </div>
+      </div>
+      <div id="sleep-graph" class="h-40 my-2"></div>
+      <script>
+        const trace6 = {x: [], y: [], type: 'scatter', line: {color: 'rgb(26, 51, 89)', width: 3}};
+
+        for (let i = 6; i >= 0; i--) {
+          let [y, m, d] = new Date(health[i].date).toISOString().substring(0, 10).split('-')
+          trace6.x.push(`${d}/${m}`)
+          trace6.y.push(health[i].sleep)
+        };
+
+        const data6 = [trace6];
+        Plotly.newPlot('sleep-graph', data5, layout1, {staticPlot: true});
+      </script>
+    </div>
+  </div>
+
+  <div class="relative overflow-x-auto overflow-y-auto rounded-lg mt-10 mb-20 max-h-96">
+    <table class="table-auto w-full text-sm text-left text-gray-400">
+        <thead class="text-xs text-gray-300 uppercase bg-gray-600">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Date
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Calories Consumed
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Calories Burned
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Resting Heart Rate
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Daily Steps
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Weight (kg)
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Sleep (hrs)
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+          <% health.sort( (a,b) => new Date(b.date) - new Date (a.date) ) %>
+          <% health.forEach(function(h) { %>
+            <% let [y, m, d] = h.date.toISOString().substring(0, 10).split('-') %>
+            <tr class="border-b bg-gray-800 border-gray-700 hover:bg-gray-700">
+              <th scope="row" class="px-6 py-4 font-semibold text-white">
+                <%= `${d}/${m}/${y}` %>
+              </th>
+              <td class="px-6 py-4">
+                <%= h.caloriesIn %>
+              </td>
+              <td class="px-6 py-4">
+                <%= h.caloriesOut %>
+              </td>
+              <td class="px-6 py-4">
+                <%= h.restingHeartRate %>
+              </td>
+              <td class="px-6 py-4">
+                <%= h.steps %>
+              </td>
+              <td class="px-6 py-4">
+                <%= h.weight %>
+              </td>
+              <td class="px-6 py-4">
+                <%= h.sleep %>
+              </td>
+              <td class="px-6 py-4">
+                <a href="/health/<%= h._id %>" class="font-medium text-blue-500 hover:underline">View</a>
+              </td>
+            </tr>
+          <% }); %>
+        </tbody>
+    </table>
+  </div>
+
+  <div class="h-8"></div>
+</div>
 
 <%- include('../partials/footer') %>

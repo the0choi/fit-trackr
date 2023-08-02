@@ -3,9 +3,8 @@ const Schema = mongoose.Schema;
 
 const healthSchema = new Schema({
   date: {
-    type: String,
+    type: Date,
     required: true,
-    unique: true,
   },
   caloriesIn: {
     type: Number,
@@ -47,5 +46,7 @@ const healthSchema = new Schema({
 }, {
   timestamps: true
 });
+
+healthSchema.index({ date: 1, user: 1 }, { unique: true });
 
 module.exports = mongoose.model('Health', healthSchema);
