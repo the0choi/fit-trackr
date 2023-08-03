@@ -62,15 +62,19 @@ async function create(req, res) {
   try {
     const source = req.body.source;
 
+    // Fitbit form submitted
     if (source === "fitbit") {
-      if (!req.isAuthenticated() || !req.user.accessToken) {
+      if (!req.isAuthenticated()) {
+        return res.status(401).send("User not authenticated. Please try again.");
+      }
+
+      if (!req.user.accessToken) {
         let user = await User.findOne({ _id: req.user._id });
         let tokens = tokenRefresh(req.user.refreshToken, req, res);
         user.accessToken = tokens.accessToken;
         user.refreshToken = tokens.refreshToken;
         await user.save();
         accessToken = user.accessToken;
-        return res.status(401).send("User not authenticated or access token missing. Please try again.");
       }
 
       let accessToken = req.user.accessToken;
@@ -137,8 +141,10 @@ async function create(req, res) {
       console.log("New health record created:", health);
       res.redirect(`/dashboard`);
 
+    // Manual form submitted
     } else if (source === "manual") {
       
+      // Set unfilled form properties to default 0 (e.g. sleep = 0 hrs)
       let properties = req.body;
       for (const key in properties) {
         if (!properties[key]) properties[key] = 0;
@@ -157,6 +163,7 @@ async function create(req, res) {
   }
 }
 
+// Request new tokens from Fitbit
 async function tokenRefresh(refreshToken, req, res) {
   try {
     const tokenUrl = 'https://api.fitbit.com/oauth2/token';
@@ -192,6 +199,5 @@ async function tokenRefresh(refreshToken, req, res) {
     };
   } catch (err) {
     console.log(err);
-    res.redirect('/dashboard');
   }
 }

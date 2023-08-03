@@ -3,6 +3,7 @@ const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 const FitbitStrategy = require("passport-fitbit-oauth2").FitbitOAuth2Strategy;
 const User = require("../models/user");
 
+// Google oAuth2 strategy 
 passport.use(
   new GoogleStrategy(
     {
@@ -36,6 +37,7 @@ passport.deserializeUser(async function (userId, cb) {
   cb(null, await User.findById(userId));
 });
 
+// Fitbit oAuth2 strategy 
 passport.use(
   new FitbitStrategy(
     {
