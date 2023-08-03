@@ -51,7 +51,6 @@ async function index(req, res) {
 
 async function show(req, res) {
   const healthOne = await Health.findById(req.params.id);
-
   res.render("health/show", { healthOne });
 }
 
@@ -66,7 +65,7 @@ async function create(req, res) {
     if (source === "fitbit") {
       if (!req.isAuthenticated() || !req.user.accessToken) {
         let user = await User.findOne({ _id: req.user._id });
-        let tokens = tokenRefresh(req.user.refreshToken);
+        let tokens = tokenRefresh(req.user.refreshToken, req, res);
         user.accessToken = tokens.accessToken;
         user.refreshToken = tokens.refreshToken;
         await user.save();
@@ -154,11 +153,11 @@ async function create(req, res) {
     }
   } catch (err) {
     console.log(err);
-    res.render("health/new", { errorMsg: err.message });
+    res.redirect('/dashboard');
   }
 }
 
-async function tokenRefresh(refreshToken) {
+async function tokenRefresh(refreshToken, req, res) {
   try {
     const tokenUrl = 'https://api.fitbit.com/oauth2/token';
     const clientId = process.env.FITBIT_CLIENT_ID;
@@ -191,7 +190,8 @@ async function tokenRefresh(refreshToken) {
       accessToken: data.access_token,
       refreshToken: data.refresh_token,
     };
-  } catch (error) {
-    throw error;
+  } catch (err) {
+    console.log(err);
+    res.redirect('/dashboard');
   }
 }

@@ -8,8 +8,8 @@
       <input type="hidden" name="user" value= <%= user._id %>>
       <label>Date:</label>
       <input type="date" name="date" class="input-box">
-      <button class="action-button mt-3">
-        <input type="submit" value="Import">
+      <button class="action-button mt-4 mx-auto">
+        <input type="submit" value="Import" class="hover:cursor-pointer">
       </button>
     </form>
   </div>
@@ -21,22 +21,36 @@
   <form action="/dashboard" method="POST">
     <input type="hidden" name="source" value="manual">
     <input type="hidden" name="user" value= <%= user._id %>>
-    <label>Date:</label>
-    <input type="date" name="date" class="input-box">
-    <label>Calories consumed:</label>
-    <input type="number" name="caloriesIn" class="input-box">
-    <label>Calories burned:</label>
-    <input type="number" name="caloriesOut" class="input-box">
-    <label>Resting heart rate:</label>
-    <input type="number" name="restingHeartRate" class="input-box">
-    <label>Daily steps:</label>
-    <input type="number" name="steps" class="input-box">
-    <label>Weight:</label>
+    <label>Date:</label><br>
+    <input type="date" name="date" class="input-box"><br>
+    <div class="inline-block my-1">
+      <label>Calories consumed:</label><br>
+      <input type="number" name="caloriesIn" class="input-box">
+    </div>
+    <div class="inline-block my-1">
+      <label>Calories burned:</label><br>
+      <input type="number" name="caloriesOut" class="input-box">
+    </div>
+    <br>
+    <div class="inline-block my-1">
+      <label>Resting heart rate:</label><br>
+      <input type="number" name="restingHeartRate" class="input-box">
+    </div>
+    <div class="inline-block my-1">
+      <label>Daily steps:</label><br>
+      <input type="number" name="steps" class="input-box">
+    </div>
+    <br>
+    <div class="inline-block my-1">
+      <label>Weight:</label><br>
     <input type="number" name="weight" class="input-box">
-    <label>Hours of sleep:</label>
-    <input type="number" name="sleep" class="input-box">
+    </div>
+    <div class="inline-block my-1">
+      <label>Hours of sleep:</label><br>
+      <input type="number" name="sleep" class="input-box">
+    </div>
     <button class="action-button mt-3">
-      <input type="submit" value="Add">
+      <input type="submit" value="Add" class="hover:cursor-pointer">
     </button>
   </form>
 </div>

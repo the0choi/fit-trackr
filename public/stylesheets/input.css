@@ -10,7 +10,7 @@
       @apply relative flex h-11 items-center justify-center px-4 rounded-full bg-blue-600 text-sm hover:scale-105;
     }
     .input-box {
-      @apply block bg-gray-600 mt-2;
+      @apply bg-gray-600 mt-2;
     }
     .action-button {
       @apply relative flex h-8 items-center justify-center px-4 rounded-full bg-gray-600 text-sm;

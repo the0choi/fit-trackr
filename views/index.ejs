@@ -1,13 +1,13 @@
 <%- include('./partials/header') %>
 
-<div class="max-w-7xl mx-auto px-6 relative pt-36">
+<div class="max-w-7xl mx-auto px-6 relative pt-32">
   <div class="w-2/3 text-center mx-auto">
     <% if (user) { %>
       <h1 class="font-bold text-6xl font-serif">You're logged in.</h1>
     <% } else { %>
       <h1 class="font-bold text-6xl font-serif">Elevate your health <br>today.</h1>
     <% } %>
-    <p class="mt-8 text-gray-300">An all-in-one solution for maintaining your wellbeing and a healthy lifestyle. Track your daily health metrics by seamlessly syncing your fitness data into one unified ecosystem. Stay on track, set new milestones, and improve your quality of life with Trackr.</p>
+    <p class="mt-8 font-light text-gray-300">An all-in-one solution for maintaining your wellbeing and a healthy lifestyle. Track your daily health metrics by seamlessly syncing your fitness data into one unified ecosystem. Stay on track, set new milestones, and improve your quality of life with Trackr.</p>
     <div class="mt-14 flex flex-row justify-center space-x-2">
       <% if (user) { %>
         <% if (user.accessToken) { %>
@@ -25,7 +25,7 @@
       <% } %>
     </div>
     <% if (user && user.accessToken) { %>
-          <p class="mt-6"><br>Welcome back, <%= user.name %>. <br>Check out your dashboard to get started!</p>
+          <p class="mt-6 text-gray-300"><br>Welcome back, <%= user.name %>. <br>Check out your dashboard to get started!</p>
     <% } %>
     <div class="py-6 mt-16 border-y border-gray-400 text-sm flex justify-around">
       <div>

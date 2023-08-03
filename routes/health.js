@@ -11,7 +11,6 @@ router.post("/dashboard", ensureLoggedIn, healthCtrl.create);
 router.delete("/health/:id", ensureLoggedIn, healthCtrl.delete);
 router.get("/health/:id", ensureLoggedIn, healthCtrl.show);
 router.get("/health/:id/edit", ensureLoggedIn, healthCtrl.edit);
-
 router.put("/health/:id", ensureLoggedIn, healthCtrl.update);
 
 module.exports = router;

@@ -1,6 +1,18 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const noteSchema = new Schema(
+  {
+    content: {
+      type: String,
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
+
 const healthSchema = new Schema({
   date: {
     type: Date,
@@ -36,6 +48,9 @@ const healthSchema = new Schema({
     min: 0,
     default: 0
   },
+  notes: {
+    type: [noteSchema]
+  },
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User',
@@ -46,7 +61,5 @@ const healthSchema = new Schema({
 }, {
   timestamps: true
 });
-
-healthSchema.index({ date: 1, user: 1 }, { unique: true });
 
 module.exports = mongoose.model('Health', healthSchema);
