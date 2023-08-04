@@ -6,7 +6,7 @@
     <form action="/dashboard" method="POST">
       <input type="hidden" name="source" value="fitbit">
       <input type="hidden" name="user" value= <%= user._id %>>
-      <label>Date:</label>
+      <label>Date:</label><br>
       <input type="date" name="date" class="input-box">
       <button class="action-button mt-4 mx-auto">
         <input type="submit" value="Import" class="hover:cursor-pointer">
@@ -21,35 +21,38 @@
   <form action="/dashboard" method="POST">
     <input type="hidden" name="source" value="manual">
     <input type="hidden" name="user" value= <%= user._id %>>
-    <label>Date:</label><br>
-    <input type="date" name="date" class="input-box"><br>
-    <div class="inline-block my-1">
+    <div class="my-1 mx-2">
+      <label>Date:</label><br>
+      <input type="date" name="date" class="input-box"><br>
+    </div>
+    
+    <div class="inline-block my-1 mx-2">
       <label>Calories consumed:</label><br>
       <input type="number" name="caloriesIn" class="input-box">
     </div>
-    <div class="inline-block my-1">
+    <div class="inline-block my-1 mx-2">
       <label>Calories burned:</label><br>
       <input type="number" name="caloriesOut" class="input-box">
     </div>
     <br>
-    <div class="inline-block my-1">
+    <div class="inline-block my-1 mx-2">
       <label>Resting heart rate:</label><br>
       <input type="number" name="restingHeartRate" class="input-box">
     </div>
-    <div class="inline-block my-1">
+    <div class="inline-block my-1 mx-2">
       <label>Daily steps:</label><br>
       <input type="number" name="steps" class="input-box">
     </div>
     <br>
-    <div class="inline-block my-1">
+    <div class="inline-block my-1 mx-2">
       <label>Weight:</label><br>
     <input type="number" name="weight" class="input-box">
     </div>
-    <div class="inline-block my-1">
+    <div class="inline-block my-1 mx-2">
       <label>Hours of sleep:</label><br>
       <input type="number" name="sleep" class="input-box">
     </div>
-    <button class="action-button mt-3">
+    <button class="action-button mt-3 mx-2">
       <input type="submit" value="Add" class="hover:cursor-pointer">
     </button>
   </form>

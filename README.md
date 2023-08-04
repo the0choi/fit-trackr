@@ -2,6 +2,10 @@
 
 Trackr is a web application designed to help monitor, maintain and improve your accountability for your health. Keep daily logs of your day-to-day metrics such as calories, heart rate, sleep and weight manually, or connect to the Fitbit API to extract the data for you.
 
+![home page](https://i.imgur.com/vWlu7tk.png)
+
+**[Visit Trackr by clicking here!](https://trackr-the0choi-1fa6c3dcf348.herokuapp.com/)**
+
 ### App features
 * Log in with your Google account
 * Connect and (optionally) integrate your Fitbit data
@@ -24,7 +28,11 @@ Trackr is a web application designed to help monitor, maintain and improve your 
 * Pushed to GitHub via Git
 * Website deployed via Heroku
 
-**[Visit Trackr by clicking here!](https://trackr-the0choi-1fa6c3dcf348.herokuapp.com/)**
+### ER Diagram
+![ERD](https://i.imgur.com/BcjkTaW.png)
+
+User and Health models have a 1:1 relationship
+Health and Note models have a 1:M relationship
 
 # Screenshots
 ![home page](https://i.imgur.com/vWlu7tk.png)
