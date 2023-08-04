@@ -1,6 +1,6 @@
 # Trackr
 
-Trackr is a web app designed to help monitor, maintain and improve your accountability for your help. Keep daily logs of your day-to-day metrics such as calories, heart rate, sleep and weight manually, or connect to the Fitbit API to extract the data for you.
+Trackr is a web app designed to help monitor, maintain and improve your accountability for your health. Keep daily logs of your day-to-day metrics such as calories, heart rate, sleep and weight manually, or connect to the Fitbit API to extract the data for you.
 
 ### Features
 * Track your daily health metrics
