@@ -8,7 +8,7 @@ Trackr is a web app designed to help monitor, maintain and improve your accounta
 * Connects and integrates your Fitbit data
 * Minimalist and user-friendly design for ease-of-use
 
-**[Trackr is deployed via Heroku and can be visited clicking here!](https://fathomless-badlands-34178-cd82f0f28fa2.herokuapp.com/)**
+**[Trackr is deployed via Heroku and can be visited clicking here!](https://trackr-the0choi-1fa6c3dcf348.herokuapp.com/)**
 
 
 # Screenshots
