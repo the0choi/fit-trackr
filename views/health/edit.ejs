@@ -3,45 +3,50 @@
 <div class="flex flex-col justify-center items-center mt-10">
   <% let [y, m, d] = new Date(healthOne.date).toISOString().substring(0, 10).split('-') %>
   <h1 class="font-bold">Edit - Daily Log <%= `${d}/${m}/${y}` %></h1><br>
-  <form action="/health/<%= healthOne._id %>?_method=PUT" method="POST">
-    <input type="hidden" name="source" value="manual">
-    <input type="hidden" name="user" value= <%= user._id %>>
-    <div class="inline-block my-1 mx-2">
-      <label>Date:</label><br>
-      <input type="date" name="date" value="<%= healthOne.date.toISOString().substring(0, 10) %>" class="input-box">
-    </div>
-    
-    <br>
-    <div class="inline-block my-1 mx-2">
-      <label>Calories consumed:</label><br>
-      <input type="number" name="caloriesIn"  value="<%= healthOne.caloriesIn %>" class="input-box">
-    </div>
-    <div class="inline-block my-1 mx-2">
-      <label>Calories burned:</label><br>
-      <input type="number" name="caloriesOut" value="<%= healthOne.caloriesOut %>" class="input-box">
-    </div>
-    <br>
-    <div class="inline-block my-1 mx-2">
-      <label>Resting heart rate:</label><br>
-      <input type="number" name="restingHeartRate" value="<%= healthOne.restingHeartRate %>" class="input-box">
-    </div>
-    <div class="inline-block my-1 mx-2">
-      <label>Daily steps:</label><br>
-      <input type="number" name="steps" value="<%= healthOne.steps %>" class="input-box">
-    </div>
-    <br>
-    <div class="inline-block my-1 mx-2">
-      <label>Weight:</label><br>
-      <input type="number" name="weight" value="<%= healthOne.weight %>" class="input-box">
-    </div>
-    <div class="inline-block my-1 mx-2">
-      <label>Hours of sleep:</label><br>
-      <input type="number" name="sleep" value="<%= healthOne.sleep %>" class="input-box">
-    </div>
-    <button class="action-button mt-3 mx-2">
-      <input type="submit" value="Save">
-    </button>
-  </form>
+  <div class="w-2/5 my-2 border-y border-2 border-gray-600"></div><br>
+
+  <div class="boxes">
+    <form action="/health/<%= healthOne._id %>?_method=PUT" method="POST">
+      <input type="hidden" name="source" value="manual">
+      <input type="hidden" name="user" value= <%= user._id %>>
+      <div class="inline-block my-1 mx-1">
+        <label>Date:</label><br>
+        <input type="date" name="date" value="<%= healthOne.date.toISOString().substring(0, 10) %>" class="input-box pl-2">
+      </div>
+      
+      <br>
+      <div class="inline-block my-1 mx-1">
+        <label>Calories consumed:</label><br>
+        <input type="number" name="caloriesIn"  value="<%= healthOne.caloriesIn %>" class="input-box pl-2">
+      </div>
+      <div class="inline-block my-1 mx-1">
+        <label>Calories burned:</label><br>
+        <input type="number" name="caloriesOut" value="<%= healthOne.caloriesOut %>" class="input-box pl-2">
+      </div>
+      <br>
+      <div class="inline-block my-1 mx-1">
+        <label>Resting heart rate:</label><br>
+        <input type="number" name="restingHeartRate" value="<%= healthOne.restingHeartRate %>" class="input-box pl-2">
+      </div>
+      <div class="inline-block my-1 mx-1">
+        <label>Daily steps:</label><br>
+        <input type="number" name="steps" value="<%= healthOne.steps %>" class="input-box pl-2">
+      </div>
+      <br>
+      <div class="inline-block my-1 mx-1">
+        <label>Weight:</label><br>
+        <input type="number" name="weight" value="<%= healthOne.weight %>" class="input-box pl-2">
+      </div>
+      <div class="inline-block my-1 mx-1">
+        <label>Hours of sleep:</label><br>
+        <input type="number" name="sleep" value="<%= healthOne.sleep %>" class="input-box pl-2">
+      </div>
+      <button class="action-button bg-blue-600 mt-3 mx-1">
+        <input type="submit" class="hover:cursor-pointer" value="Save">
+      </button>
+    </form>
+  </div>
+  
 </div>
 
 <%- include('../partials/footer') %>

@@ -39,9 +39,9 @@ Health and Note models have a 1:M relationship
 ![logged in page](https://i.imgur.com/xxY41r2.png)
 ![dashboard](https://i.imgur.com/yzc4PZJ.png)
 ![dashboard 2](https://i.imgur.com/kAY9B3n.png)
-![daily log](https://i.imgur.com/X1H76S8.png)
-![day view log](https://i.imgur.com/s85T2T0.png) 
-![edit page](https://i.imgur.com/42Qnbtz.png) 
+![daily log](https://i.imgur.com/PnKaIHg.png)
+![day view log](https://i.imgur.com/UyYkukf.png) 
+![edit page](https://i.imgur.com/DqIh5ji.png) 
 
 # Technologies Used
 * HTML & EJS templates

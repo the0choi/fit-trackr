@@ -78,14 +78,16 @@
       
     </div>
   </div>
+  <div class="my-4 border-y border-2 border-gray-600"></div>
 
-  <div class="w-2/3 px-6">
+
+  <div class="w-2/3">
 
     <% if (healthOne.notes[0]) { %>
-      <h2 class="my-3 text-xl font-serif font-semibold">Notes</h2>
+      <h2 class="my-3 text-xl font-serif font-semibold px-6">Notes</h2>
 
       <% healthOne.notes.forEach( function (n) { %>
-        <div class="boxes m-2">
+        <div class="boxes my-2">
           <p><%= n.content %></p>
           <div class="flex justify-end">
             <form action="/health/<%= healthOne._id %>/notes?_method=DELETE" method="POST" class="inline-block mt-3">
@@ -96,20 +98,18 @@
             </form>
           </div>
           
-          
         </div>
       <% }); %>
     <% }; %>
 
-    <h2 class="my-3 text-xl font-serif font-semibold">Add a note...</h2>
+    <h2 class="my-3 px-6 text-xl font-serif font-semibold">Add a note...</h2>
     <form id="notes-form" method="POST" action="/health/<%= healthOne._id %>/notes">
       <textarea name="content" required="required" class="input-box w-3/4"></textarea>
-      <button class="action-button bg-blue-600 my-3">
+      <button class="action-button bg-blue-600 my-3 mx-6">
         <input type="submit" value="Submit" class="hover:cursor-pointer">
       </button>
     </form>
   </div>
- 
 
   <div class="h-8"></div>
 </div>

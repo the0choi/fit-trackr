@@ -3,59 +3,63 @@
 <% if (user && user.accessToken) { %>
   <div class="flex flex-col justify-center items-center mt-10">
     <h1 class="font-bold">Sync your data from Fitbit</h1><br>
+    <div class="boxes">
+      <form action="/dashboard" method="POST">
+        <input type="hidden" name="source" value="fitbit">
+        <input type="hidden" name="user" value= <%= user._id %>>
+        <label>Date:</label><br>
+        <input type="date" name="date" class="input-box pl-2">
+        <button class="action-button mt-4 mx-auto bg-blue-600">
+          <input type="submit" value="Import" class="hover:cursor-pointer">
+        </button>
+      </form>
+    </div>
+  </div>
+  <br><div class="w-2/5 mx-auto border-y border-2 border-gray-600"></div><br>
+<% } %>
+
+<div class="flex flex-col justify-center items-center">
+  <h1 class="font-bold">Manually log your day</h1><br>
+  <div class="boxes">
     <form action="/dashboard" method="POST">
-      <input type="hidden" name="source" value="fitbit">
+      <input type="hidden" name="source" value="manual">
       <input type="hidden" name="user" value= <%= user._id %>>
-      <label>Date:</label><br>
-      <input type="date" name="date" class="input-box">
-      <button class="action-button mt-4 mx-auto">
-        <input type="submit" value="Import" class="hover:cursor-pointer">
+      <div class="my-1 mx-1">
+        <label>Date:</label><br>
+        <input type="date" name="date" class="input-box pl-2"><br>
+      </div>
+      
+      <div class="inline-block my-1 mx-1">
+        <label>Calories consumed:</label><br>
+        <input type="number" name="caloriesIn" class="input-box pl-2">
+      </div>
+      <div class="inline-block my-1 mx-1">
+        <label>Calories burned:</label><br>
+        <input type="number" name="caloriesOut" class="input-box pl-2">
+      </div>
+      <br>
+      <div class="inline-block my-1 mx-1">
+        <label>Resting heart rate:</label><br>
+        <input type="number" name="restingHeartRate" class="input-box pl-2">
+      </div>
+      <div class="inline-block my-1 mx-1">
+        <label>Daily steps:</label><br>
+        <input type="number" name="steps" class="input-box pl-2">
+      </div>
+      <br>
+      <div class="inline-block my-1 mx-1">
+        <label>Weight:</label><br>
+      <input type="number" name="weight" class="input-box pl-2">
+      </div>
+      <div class="inline-block my-1 mx-1">
+        <label>Hours of sleep:</label><br>
+        <input type="number" name="sleep" class="input-box pl-2">
+      </div>
+      <button class="action-button mt-3 mx-1 bg-blue-600">
+        <input type="submit" value="Add" class="hover:cursor-pointer">
       </button>
     </form>
   </div>
-  <div class="mt-5 border-t border-gray-400 w-2/3 mx-auto"></div>
-<% } %>
-
-<div class="flex flex-col justify-center items-center mt-10">
-  <h1 class="font-bold">Manually log your day</h1><br>
-  <form action="/dashboard" method="POST">
-    <input type="hidden" name="source" value="manual">
-    <input type="hidden" name="user" value= <%= user._id %>>
-    <div class="my-1 mx-2">
-      <label>Date:</label><br>
-      <input type="date" name="date" class="input-box"><br>
-    </div>
-    
-    <div class="inline-block my-1 mx-2">
-      <label>Calories consumed:</label><br>
-      <input type="number" name="caloriesIn" class="input-box">
-    </div>
-    <div class="inline-block my-1 mx-2">
-      <label>Calories burned:</label><br>
-      <input type="number" name="caloriesOut" class="input-box">
-    </div>
-    <br>
-    <div class="inline-block my-1 mx-2">
-      <label>Resting heart rate:</label><br>
-      <input type="number" name="restingHeartRate" class="input-box">
-    </div>
-    <div class="inline-block my-1 mx-2">
-      <label>Daily steps:</label><br>
-      <input type="number" name="steps" class="input-box">
-    </div>
-    <br>
-    <div class="inline-block my-1 mx-2">
-      <label>Weight:</label><br>
-    <input type="number" name="weight" class="input-box">
-    </div>
-    <div class="inline-block my-1 mx-2">
-      <label>Hours of sleep:</label><br>
-      <input type="number" name="sleep" class="input-box">
-    </div>
-    <button class="action-button mt-3 mx-2">
-      <input type="submit" value="Add" class="hover:cursor-pointer">
-    </button>
-  </form>
 </div>
 
 <%- include('../partials/footer') %>
